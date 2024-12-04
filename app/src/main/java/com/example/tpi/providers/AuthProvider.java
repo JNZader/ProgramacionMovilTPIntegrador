@@ -36,6 +36,12 @@ public class AuthProvider {
         // Inicializa Parse con la configuración de la aplicación.
         Parse.initialize(new Parse.Configuration.Builder(context).applicationId(context.getString(R.string.back4app_app_id)).clientKey(context.getString(R.string.back4app_client_key)).server(context.getString(R.string.back4app_server_url)).build());
     }
+    /**
+     * Constructor de la clase.
+     */
+    public AuthProvider() {
+
+    }
 
     /**
      * Inicia sesión con el usuario proporcionado.
