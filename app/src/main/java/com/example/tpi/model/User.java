@@ -49,6 +49,18 @@ public class User {
         this.fotoperfil = fotoperfil;
         this.intereses = intereses;
     }
+    /**
+     * Constructor que inicializa de un usuario con solo 3 parametros.
+     *
+     * @param username Nombre de usuario
+     * @param email Correo electrónico
+     * @param password Contraseña
+     */
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     /**
      * Obtiene el ID del usuario.
