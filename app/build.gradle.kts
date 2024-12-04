@@ -20,6 +20,10 @@ android {
 
         // Configuración del ejecutor de pruebas
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue ("string", "back4app_server_url", "\"${project.findProperty("BACK4APP_SERVER_URL".toString())}\"")
+        resValue ("string", "back4app_app_id", "\"${project.findProperty("BACK4APP_APPLICATION_ID".toString())}\"")
+        resValue ("string", "back4app_client_key", "\"${project.findProperty("BACK4APP_CLIENT_KEY".toString())}\"")
     }
 
     // Configuración de los tipos de compilación
@@ -75,4 +79,9 @@ dependencies {
     testImplementation(libs.junit) // Biblioteca de pruebas de JUnit
     androidTestImplementation(libs.ext.junit) // Biblioteca de pruebas de JUnit para Android
     androidTestImplementation(libs.espresso.core) // Biblioteca de pruebas de Espresso
+
+    // Parse SDK
+    implementation(libs.bolts.tasks)
+    implementation(libs.parse)
+
 }

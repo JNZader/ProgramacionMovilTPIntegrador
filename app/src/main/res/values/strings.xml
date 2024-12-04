@@ -2,8 +2,7 @@
     <string name="app_name">Compartiendo el mundo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="mis_experiencias">Mis Lugares Preferidos
-</string>
+    <string name="mis_experiencias">Mis Lugares Preferidos</string>
     <string name="Chats">Chats</string>
     <string name="sin_cuenta">¿No tienes cuenta?</string>
     <string name="Perfil">Perfil</string>
@@ -33,9 +32,5 @@
         <item>Cultura</item>
         <item>Playa</item>
     </string-array>
-
-    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
-    <string name="back4app_app_id">aza5SthTqyxgDUruRcmvKINdxzroFUwVM2MdRDTf</string>
-    <string name="back4app_client_key">um19Fl8kW30QF91Q02m2U1TgRbZ8qW3Iwh7IFw52</string>
     <string name="btnini">INICIAR SESION</string>
 </resources>
