@@ -34,4 +34,12 @@
     </string-array>
     <string name="btnini">INICIAR SESION</string>
     <string name="home">Home</string>
+    <string name="gesti_n_de_usuarios">GESTIÓN DE USUARIOS</string>
+    <string name="id">ID</string>
+    <string name="nombre_de_usuario">Nombre de Usuario</string>
+    <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="crear">Crear</string>
+    <string name="leer">Leer</string>
+    <string name="actualizar2">Actualizar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
