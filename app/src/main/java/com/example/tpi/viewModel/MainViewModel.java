@@ -37,10 +37,8 @@ public class MainViewModel extends ViewModel {
         // Crea un LiveData para almacenar el resultado del login.
         MutableLiveData<String> loginResult = new MutableLiveData<>();
         // Inicia sesión con el usuario proporcionado.
-        authProvider.signIn(email, password).observeForever(userId -> {
-            // Establece el ID del usuario en el LiveData si el login es exitoso.
-            loginResult.setValue(userId);
-        });
+        // Establece el ID del usuario en el LiveData si el login es exitoso.
+        authProvider.signIn(email, password).observeForever(loginResult::setValue);
         // Regresa el LiveData.
         return loginResult;
     }

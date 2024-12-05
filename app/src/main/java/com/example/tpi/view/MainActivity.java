@@ -2,17 +2,17 @@ package com.example.tpi.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.tpi.databinding.ActivityMainBinding;
-import com.example.tpi.providers.AuthProvider;
 import com.example.tpi.util.Validaciones;
 import com.example.tpi.viewModel.MainViewModel;
 import com.example.tpi.viewModel.MainViewModelFactory;
+
+import java.util.Objects;
 
 /**
  * Clase que representa la actividad principal de la aplicación.
@@ -31,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private MainViewModel viewModel;
 
-    /**
-     * Instancia del proveedor de autenticación.
-     */
-    private AuthProvider authProvider;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Crea una instancia del modelo de vista de la actividad principal.
         viewModel = new ViewModelProvider(this, new MainViewModelFactory(this)).get(MainViewModel.class);
-
-        // Crea una instancia del proveedor de autenticación.
-        authProvider = new AuthProvider(this);
 
         // Maneja los eventos de la vista.
         manejarEventos();
@@ -64,49 +56,43 @@ public class MainActivity extends AppCompatActivity {
      */
     private void manejarEventos() {
         // Establece el evento de clic en el botón de registro.
-        binding.tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Inicia la actividad de registro.
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
+        binding.tvRegister.setOnClickListener(v -> {
+            // Inicia la actividad de registro.
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         });
 
         // Establece el evento de clic en el botón de login.
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Obtiene los valores de los campos de email y password.
-                String email = binding.etEmail.getText().toString().trim();
-                String pass = binding.etPassword.getText().toString().trim();
+        binding.btnLogin.setOnClickListener(v -> {
+            // Obtiene los valores de los campos de email y password.
+            String email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
+            String pass = Objects.requireNonNull(binding.etPassword.getText()).toString().trim();
 
-                // Valida los campos de email y password.
-                if (!Validaciones.validarEmail(email)) {
-                    // Muestra un mensaje de error si el email es incorrecto.
-                    showToast("Email incorrecto");
-                    return;
-                }
-                if (!Validaciones.controlarPassword(pass)) {
-                    // Muestra un mensaje de error si la password es incorrecta.
-                    showToast("Password incorrecto");
-                    return;
-                }
-
-                // Inicia la autenticación con el usuario.
-                viewModel.login(email, pass).observe(MainActivity.this, user_id -> {
-                    // Si la autenticación es exitosa, inicia la actividad de home.
-                    if (user_id != null) {
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                        //   intent.putExtra("user_id",user_id);
-                        startActivity(intent);
-                    } else {
-                        // Muestra un mensaje de error si la autenticación falla.
-                        showToast("Login fallido");
-                    }
-                });
+            // Valida los campos de email y password.
+            if (!Validaciones.validarEmail(email)) {
+                // Muestra un mensaje de error si el email es incorrecto.
+                showToast("Email incorrecto");
+                return;
             }
+            if (!Validaciones.controlarPassword(pass)) {
+                // Muestra un mensaje de error si la password es incorrecta.
+                showToast("Password incorrecto");
+                return;
+            }
+
+            // Inicia la autenticación con el usuario.
+            viewModel.login(email, pass).observe(MainActivity.this, user_id -> {
+                // Si la autenticación es exitosa, inicia la actividad de home.
+                if (user_id != null) {
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    //   intent.putExtra("user_id",user_id);
+                    startActivity(intent);
+                } else {
+                    // Muestra un mensaje de error si la autenticación falla.
+                    showToast("Login fallido");
+                }
+            });
         });
     }
 
