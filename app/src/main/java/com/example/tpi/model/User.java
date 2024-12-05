@@ -50,13 +50,27 @@ public class User {
         this.intereses = intereses;
     }
     /**
-     * Constructor que inicializa de un usuario con solo 3 parametros.
+     * Constructor que inicializa un usuario con solo 3 parametros.
      *
      * @param username Nombre de usuario
      * @param email Correo electrónico
      * @param password Contraseña
      */
     public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+    /**
+     * Constructor que inicializa un usuario con solo 4 parametros.
+     *
+     * @param id Identificador único del usuario
+     * @param username Nombre de usuario
+     * @param email Correo electrónico
+     * @param password Contraseña
+     */
+    public User(String id, String username, String email, String password) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;

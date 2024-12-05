@@ -1,7 +1,6 @@
 package com.example.tpi.view;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +11,8 @@ import com.example.tpi.databinding.ActivityRegisterBinding;
 import com.example.tpi.model.User;
 import com.example.tpi.viewModel.RegisterViewModel;
 import com.example.tpi.util.Validaciones;
+
+import java.util.Objects;
 
 /**
  * Clase que representa la actividad de registro de usuarios.
@@ -45,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Obtener la lógica de negocio para el registro de usuarios
         viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         // Observar el resultado del registro de usuario
-        viewModel.getRegisterResult().observe(this, result -> showToast(result));
+        viewModel.getRegisterResult().observe(this, this::showToast);
         // Manejar los eventos de la vista
         manejarEventos();
     }
@@ -58,12 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
         binding.imageBack.setOnClickListener(v -> finish());
 
         // Evento de registro
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Realizar el registro de usuario
-                realizarRegistro();
-            }
+        binding.btnRegister.setOnClickListener(v -> {
+            // Realizar el registro de usuario
+            realizarRegistro();
         });
     }
 
@@ -72,10 +70,10 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void realizarRegistro() {
         // Obtener los datos de los campos de texto
-        String usuario = binding.etUsername.getText().toString().trim();
-        String email = binding.etEmail.getText().toString().trim();
-        String pass = binding.etPassword.getText().toString().trim();
-        String pass1 = binding.etPassword2.getText().toString().trim();
+        String usuario = Objects.requireNonNull(binding.etUsername.getText()).toString().trim();
+        String email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
+        String pass = Objects.requireNonNull(binding.etPassword.getText()).toString().trim();
+        String pass1 = Objects.requireNonNull(binding.etPassword2.getText()).toString().trim();
         // Validaciones de entrada
         if (!Validaciones.validarUsuario(usuario)) {
             // Mostrar un mensaje de error si el usuario es incorrecto

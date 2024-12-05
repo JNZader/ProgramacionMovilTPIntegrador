@@ -55,7 +55,7 @@ public class RegisterViewModel extends ViewModel {
         LiveData<String> result = authProvider.signIn(user.getEmail(), user.getPassword());
 
         // Observar el resultado del registro
-        result.observeForever(new Observer<String>() {
+        result.observeForever(new Observer<>() {
             @Override
             public void onChanged(String objectId) {
                 // Verificar si el registro fue exitoso

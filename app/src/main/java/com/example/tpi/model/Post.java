@@ -74,6 +74,12 @@ public class Post {
     }
 
     /**
+     * Constructor vacio para crear un post.
+     */
+    public Post() {
+    }
+
+    /**
      * Obtiene el título del post.
      *
      * @return El título del post.

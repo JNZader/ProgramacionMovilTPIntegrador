@@ -1,5 +1,7 @@
 package com.example.tpi.viewModel;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -21,7 +23,7 @@ public class MainViewModel extends ViewModel {
     /**
      * Constructor de la clase.
      */
-    public MainViewModel() {
+    public MainViewModel(Context context) {
         // Crea una instancia del proveedor de autenticación.
         authProvider = new AuthProvider();
     }
