@@ -33,4 +33,5 @@
         <item>Playa</item>
     </string-array>
     <string name="btnini">INICIAR SESION</string>
+    <string name="home">Home</string>
 </resources>
