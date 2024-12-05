@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Layout principal de la actividad de perfil -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.PerfilFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- AppBarLayout que contiene la barra de herramientas y el título -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@drawable/headerbkg"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- CollapsingToolbarLayout que contiene el título y la imagen de fondo -->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- FrameLayout que contiene la imagen de fondo y los elementos de texto -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- CircleImageView que muestra la imagen de perfil -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circle_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="130dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_person"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="5dp"
+                    app:civ_circle_background_color="@color/colorGray" />
+
+                <!-- LinearLayout que contiene los elementos de texto -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    tools:ignore="RtlHardcoded">
+
+                    <!-- TextView que muestra el texto de la red social -->
+                    <TextView
+                        android:id="@+id/red_social_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/redsocial"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <!-- TextView que muestra el texto de la red social (pequeño) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/redsocial"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
+                </LinearLayout>
+
+                <!-- LinearLayout que contiene los elementos de texto -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!-- TextView que muestra el número de publicaciones -->
+                    <TextView
+                        android:id="@+id/publicaciones_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
+
+                    <!-- TextView que muestra el texto de las publicaciones -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/publicaciones"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
+                </LinearLayout>
+            </FrameLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- LinearLayout que contiene los nombres del usuario -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="100dp"
+        android:orientation="vertical">
+
+        <!-- TextView que muestra el nombre del usuario -->
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/lavender"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- TextView que muestra el correo electrónico del usuario -->
+        <TextView
+            android:id="@+id/email_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text=""
+            android:textColor="@color/lavender"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- NestedScrollView que contiene el contenido de la pantalla -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="20dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="SpekableTextPresentCheck,SpeakableTextPresentCheck">
+    </androidx.core.widget.NestedScrollView>
 
-</FrameLayout>
+    <!-- LinearLayout que contiene el botón de regresar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <!-- ImageView que muestra el botón de regresar -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/back_bottom"
+            tools:ignore="UnusedAttribute" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
